@@ -1,0 +1,24 @@
+#ifndef __SORT_H_INCLUDED__
+#define __SORT_H_INCLUDED__
+
+
+typedef data int;
+
+void SelectionSort(data* A, int size);
+void SelectionSortRecursive(data* A, int size);
+
+void BubbleSort(data* A, int size);
+void BubbleSortRecursive(data* A, int size);
+
+void InsertionSort(data* A, int size);
+void InsertionSortRecursive(data* A, int size);
+
+void MergeSort(data* A, int p, int r);
+void Merge(data* A, int p, int q, int r);
+
+void QuickSort(data* A, int p, int r);
+int Partition(data* A, int p, int r);
+
+
+
+#endif /*__SORT_H_INCLUDED__ */

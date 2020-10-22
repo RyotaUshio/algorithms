@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "sort.h"
+
+
+int main(int argc, char** argv)
+{
+  data array[] = {4, 1, 3, 1, 10, 6, 7, 5};
+  int size = sizeof(array);
+
+  SelectionSort(array, size);
+  
+  return 0;
+}
