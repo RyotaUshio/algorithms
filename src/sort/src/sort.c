@@ -13,6 +13,7 @@ data* RandomArray(int size, data min, data max)
   data* array = (data*)malloc(size * sizeof(data));
   double uniform;
   srand((unsigned int)time(NULL));
+  //srand((unsigned int)time(NULL));
   for(int i=0; i<size; i++)
     {
       uniform = rand() / (double)RAND_MAX;
@@ -183,18 +184,13 @@ void Merge(data* A, data* B, int p, int q, int r)
   int i, j, k;
   for(i=p, j=q+1, k=p; k<=r; k++)
     {
-      if(i > q)
-	B[k] = A[j++];
-      else if(j > r)
-	B[k] = A[i++];
-      else if(A[i] < A[j])
-	B[k] = A[i++];
-      else
-	B[k] = A[j++];
+      if(i > q)            B[k] = A[j++];
+      else if(j > r)       B[k] = A[i++];
+      else if(A[i] < A[j]) B[k] = A[i++];
+      else                 B[k] = A[j++];
     }
 
-  for(k=p; k<=r; k++)
-    A[k] = B[k];
+  for(k=p; k<=r; k++)      A[k] = B[k];
 }
 
 
@@ -218,14 +214,13 @@ void _QuickSort(data* A, int p, int r)
 int _Partition(data* A, int p, int r)
 {
   data pivot = A[p];
-  int i = p;
-  int j = r;
-  while(1)
+  int i, j;
+  for(i=p, j=r; ; i++, j--)
     {
-      for(; A[i]<pivot; i++){}
-      for(; A[j]>pivot; j--){}
+      while(A[i]<pivot) i++;
+      while(A[j]>pivot) j--;
       if(i >= j) return j;
-      Swap(A, i++, j--);
+      Swap(A, i, j);
     }
 }
 
