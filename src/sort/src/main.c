@@ -5,14 +5,14 @@
 
 int main(int argc, char** argv)
 {
-  int size = 10;
+  int size = 8;
   data* array = RandomArray(size, 0, 100);
 
-  //  printf("before: "); PrintArray(array, size);
+  printf("before: "); PrintArray(array, size);
 
   QuickSort(array, size);
   
-  //printf("after:  "); PrintArray(array, size);
+  printf("after:  "); PrintArray(array, size);
   IsSorted(array, size);
 
   free(array);
