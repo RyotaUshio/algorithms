@@ -23,6 +23,15 @@ data* RandomArray(int size, data min, data max)
 }
 
 
+data* CopyArray(data* src, int size)
+{
+  data* cp = (data*)malloc(size * sizeof(data));
+  int i;
+  for(i=0; i<size; i++) cp[i] = src[i];
+  return cp;
+}
+
+
 int IsSorted(data* A, int size)
 {
   data previous_value = A[0];
@@ -46,6 +55,16 @@ void PrintArray(data* A, int size)
       printf(",  ");
   }
   printf("\n");
+}
+
+
+void TimeIt(void(*SortAlgorithm)(data*, int), data* A, int size)
+{
+  clock_t start, end;
+  start = clock();
+  SortAlgorithm(A, size);
+  end = clock();
+  printf("Elasped: %.4g sec\n",(double)(end-start)/CLOCKS_PER_SEC);
 }
 
 

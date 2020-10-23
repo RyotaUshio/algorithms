@@ -6,8 +6,10 @@ typedef int data;
 
 /* Fundamental utilities */
 data* RandomArray(int size, data min, data max);
+data* CopyArray(data* src, int size);
 int IsSorted(data* array, int size);
 void PrintArray(data* A, int size);
+void TimeIt();
 void Swap(data* A, int i, int j);
 
 /* Incremental approach */
