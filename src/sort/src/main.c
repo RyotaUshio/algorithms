@@ -2,28 +2,38 @@
 #include <stdlib.h>
 #include "sort.h"
 
+/* O(n^2) algorithms: SelectionSort < InsertionSort << BubbleSort */
+/*                    faster <<<<.....................<<<< slower */
 
 int main(int argc, char** argv)
 {
-  int size = 10000; // N=10^7 -> O(nlogn)~1-2sec, N=10^5 -> O(n^2)~13sec
-  data* array = RandomArray(size, 0, 100);
-  data* array_ = CopyArray(array, size);
-  data* array__ = CopyArray(array_, size);
+  int size = 1000000;
 
   printf("N = %d\n", size);
-
+  
+  data* array = RandomArray(size, 0, 100);
   printf("QuickSort > ");
   TimeIt(QuickSort, array, size);
   IsSorted(array, size);
+  free(array);
 
-  printf("InsertionSort > ");
-  TimeIt(InsertionSort, array_, size);
-  IsSorted(array_, size);
+  /* array = RandomArray(size, 0, 100); */
+  /* printf("BubbleSortRecursive > "); */
+  /* TimeIt(BubbleSortRecursive, array, size); */
+  /* IsSorted(array, size); */
+  /* free(array); */
 
+  array = RandomArray(size, 0, 100);
   printf("MergeSort > ");
-  TimeIt(MergeSort, array__, size);
-  IsSorted(array__, size);
+  TimeIt(MergeSort, array, size);
+  IsSorted(array, size);
+  free(array);
 
-  free(array); free(array_); free(array__);
+  array = RandomArray(size, 0, 100);
+  printf("HeapSort > ");
+  TimeIt(HeapSort, array, size);
+  IsSorted(array, size);
+  free(array);
+
   return 0;
 }

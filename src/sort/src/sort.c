@@ -12,7 +12,7 @@ data* RandomArray(int size, data min, data max)
   // dynamically allcate memory for an array with specified size.
   data* array = (data*)malloc(size * sizeof(data));
   double uniform;
-  srand((unsigned int)time(NULL));
+  srand((unsigned int)clock());
   //srand((unsigned int)time(NULL));
   for(int i=0; i<size; i++)
     {
@@ -243,3 +243,73 @@ int _Partition(data* A, int p, int r)
     }
 }
 
+
+
+/* Heap & heap sort*/
+
+int Parent(int i)
+{
+  return i/2;
+}
+
+
+int Left(int i)
+{
+  return 2*i;
+}
+
+
+int Right(int i)
+{
+  return 2*i + 1;
+}
+
+
+void Heapify(Heap* H, int i)
+{
+  data largest = i;
+  int left = Left(i);
+  int right = Right(i);
+  if(left <= H->heap_size - 1)
+    largest = ( (H->A[i]) > (H->A[left]) ) ? i : left;
+  if(right <= H->heap_size - 1)
+    largest = ( (H->A[largest]) > (H->A[right]) ) ? largest : right;
+
+  if(largest != i)
+    {
+      Swap(H->A, largest, i);
+      Heapify(H, largest);
+    }
+}
+
+
+Heap BuildHeap(data* A, int size)
+{
+  Heap H;
+  H.length = size;
+  H.heap_size = size;
+  H.A = A;
+  
+  for(int i=Parent(H.heap_size-1); i>=0; i--)
+    Heapify(&H, i);
+
+  return H;
+}
+
+
+data ExtractMax(Heap* H)
+{
+  data max = H->A[0];
+  H->A[0] = H->A[H->heap_size-1];
+  H->heap_size -= 1;
+  Heapify(H, 0);
+  return max;
+}
+
+
+void HeapSort(data* A, int size)
+{
+  Heap H = BuildHeap(A, size);
+  for(int i=size-1; i>0; i--)
+    A[i] = ExtractMax(&H);
+}

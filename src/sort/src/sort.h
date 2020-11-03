@@ -9,7 +9,7 @@ data* RandomArray(int size, data min, data max);
 data* CopyArray(data* src, int size);
 int IsSorted(data* array, int size);
 void PrintArray(data* A, int size);
-void TimeIt();
+void TimeIt(void(*SortAlgorithm)(data*, int), data* A, int size);
 void Swap(data* A, int i, int j);
 
 /* Incremental approach */
@@ -31,6 +31,20 @@ void QuickSort(data* A, int size);
 void _QuickSort(data* A, int p, int r);
 int _Partition(data* A, int p, int r);
 
+/* Heap & heap sort*/
+typedef struct {
+  int length;
+  int heap_size;
+  data* A;
+} Heap;
 
+int Parent(int i);
+int Left(int i);
+int Right(int i);
+
+void Heapify(Heap* H, int i);
+Heap BuildHeap(data* A, int size);
+data ExtractMax(Heap* H);
+void HeapSort(data* A, int size);
 
 #endif /*__SORT_H_INCLUDED__ */

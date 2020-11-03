@@ -1,0 +1,3 @@
+(def print-list (lst)
+     (dolist (elem lst)
+       (format t "~A  " elem)))
