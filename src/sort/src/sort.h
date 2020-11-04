@@ -5,6 +5,7 @@
 typedef int data;
 
 /* Fundamental utilities */
+data Random(data min, data max);
 data* RandomArray(int size, data min, data max);
 data* CopyArray(data* src, int size);
 int IsSorted(data* array, int size);
@@ -30,6 +31,9 @@ void Merge(data* A, data* B, int p, int q, int r);
 void QuickSort(data* A, int size);
 void _QuickSort(data* A, int p, int r);
 int _Partition(data* A, int p, int r);
+void RandomizedQuickSort(data* A, int size);
+void _RandomizedQuickSort(data* A, int p, int r);
+int _RandomizedPartition(data* A, int p, int r);
 
 /* Heap & heap sort*/
 typedef struct {

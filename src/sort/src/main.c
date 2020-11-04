@@ -7,7 +7,7 @@
 
 int main(int argc, char** argv)
 {
-  int size = 1000000;
+  int size = 100000;
 
   printf("N = %d\n", size);
   
@@ -17,23 +17,29 @@ int main(int argc, char** argv)
   IsSorted(array, size);
   free(array);
 
+  array = RandomArray(size, 0, 100);
+  printf("RandomizedQuickSort > ");
+  TimeIt(RandomizedQuickSort, array, size);
+  IsSorted(array, size);
+  free(array);
+
   /* array = RandomArray(size, 0, 100); */
   /* printf("BubbleSortRecursive > "); */
   /* TimeIt(BubbleSortRecursive, array, size); */
   /* IsSorted(array, size); */
   /* free(array); */
 
-  array = RandomArray(size, 0, 100);
-  printf("MergeSort > ");
-  TimeIt(MergeSort, array, size);
-  IsSorted(array, size);
-  free(array);
+  /* array = RandomArray(size, 0, 100); */
+  /* printf("MergeSort > "); */
+  /* TimeIt(MergeSort, array, size); */
+  /* IsSorted(array, size); */
+  /* free(array); */
 
-  array = RandomArray(size, 0, 100);
-  printf("HeapSort > ");
-  TimeIt(HeapSort, array, size);
-  IsSorted(array, size);
-  free(array);
+  /* array = RandomArray(size, 0, 100); */
+  /* printf("HeapSort > "); */
+  /* TimeIt(HeapSort, array, size); */
+  /* IsSorted(array, size); */
+  /* free(array); */
 
   return 0;
 }

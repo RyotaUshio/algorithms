@@ -7,18 +7,27 @@
 
 /* Fundamental utilities */
 
+data Random(data min, data max)
+{
+  double uniform;
+  data ret;
+  srand((unsigned int)clock());
+  //srand((unsigned int)time(NULL));
+  
+  uniform = rand() / (double)RAND_MAX;
+  ret = (data)(uniform * (double)(max - min)) + min;
+
+  return ret;
+}
+
+
 data* RandomArray(int size, data min, data max)
 {
   // dynamically allcate memory for an array with specified size.
   data* array = (data*)malloc(size * sizeof(data));
-  double uniform;
-  srand((unsigned int)clock());
-  //srand((unsigned int)time(NULL));
   for(int i=0; i<size; i++)
-    {
-      uniform = rand() / (double)RAND_MAX;
-      array[i] = (data)(uniform * (double)(max - min)) + min;
-    }
+    array[i] = Random(max, min);
+    
   return array;
 }
 
@@ -241,6 +250,30 @@ int _Partition(data* A, int p, int r)
       if(i >= j) return j;
       Swap(A, i, j);
     }
+}
+
+
+void RandomizedQuickSort(data* A, int size)
+{
+  _RandomizedQuickSort(A, 0, size-1);
+}
+
+
+void _RandomizedQuickSort(data* A, int p, int r)
+{
+  if(p < r)
+    {
+      int q = _RandomizedPartition(A, p, r);
+      _RandomizedQuickSort(A, p, q);
+      _RandomizedQuickSort(A, q+1, r);
+    }
+}
+
+
+int _RandomizedPartition(data* A, int p, int r)
+{
+  Swap(A, p, Random(p, r));
+  return _Partition(A, p, r);
 }
 
 
