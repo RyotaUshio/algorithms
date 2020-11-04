@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  int size = 10;
+  int size = 100;
   data* array = RandomArray(size, 0, 100);
   PrintArray(array, size);
 
