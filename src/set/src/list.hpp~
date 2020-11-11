@@ -1,0 +1,38 @@
+#ifndef __LIST_HPP_INCLUDED__
+#define __LIST_HPP_INCLUDED__
+
+
+template <class T>
+struct ListElem
+// Linked list's element class
+{
+  ListElem<T>* next;
+  ListElem<T>* prev;
+  T key;
+
+  ListElem(T k);
+
+  bool is_head();
+  bool is_tail();
+};
+
+
+
+template <class T>
+class List
+// Linked list base class
+{
+  ListElem<T>* _head;
+
+public:
+  List(ListElem<T>* head);
+
+  bool is_empty();
+  ListElem<T>* head();
+  ListElem<T>* search(T& key);
+  void insert(ListElem<T>& x);
+  void erase(ListElem<T>& x);
+};
+
+
+#endif // __LIST_HPP_INCLUDED__
